@@ -15,4 +15,12 @@ router.get('/add', function(req, res, next){
   res.render('add', {title: 'add list item'});
 });
 
+router.post('/add', function(req, res, next){
+  knex('todo_list').insert(req.body).then(function(){
+    res.redirect('/');
+  }).catch(function(error){
+    console.log(error);
+  })
+})
+
 module.exports = router;
