@@ -29,4 +29,16 @@ router.get('/:id', function(req, res, next){
   })
 })
 
+router.get('/:id/edit', function(req, res, next){
+  knex('todo_list').where({id: req.params.id}).first()
+  .then(function(data){
+    res.render('edit', {listItem: data})
+  })
+})
+
+router.post('/:id/edit', function(req, res, next){
+  knex('todo_list').where({id:req.params.id}).update(req.body).then(function(){
+      res.redirect('/')
+    })
+  })
 module.exports = router;
