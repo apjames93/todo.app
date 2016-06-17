@@ -41,4 +41,11 @@ router.post('/:id/edit', function(req, res, next){
       res.redirect('/')
     })
   })
+
+  router.get('/:id/delete', function(req, res, next){
+    knex('todo_list').where({id: req.params.id}).del().then(function(){
+      res.redirect('/')
+    })
+  })
+
 module.exports = router;
