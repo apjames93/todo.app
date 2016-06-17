@@ -22,5 +22,11 @@ router.post('/add', function(req, res, next){
     console.log(error);
   })
 })
+router.get('/:id', function(req, res, next){
+  knex('todo_list').where({id: req.params.id}).first()
+  .then(function(data){
+    res.render('detail', {listItem: data})
+  })
+})
 
 module.exports = router;
